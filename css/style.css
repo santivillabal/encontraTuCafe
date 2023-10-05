@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Syne:wght@500&display=swap');
+
+p{
+    font-family: 'open sans';
+}
+span{
+    color:#B33030;
+}
+
+.boton{
+    background-color: #B33030;
+    color: white;
+}
+
+.link {
+    color: #161616;
+    text-decoration: none;
+}
+.link:hover{
+    color: #B33030;
+}
+
+
+.title{
+    font-size: 2rem;
+    color: #161616;
+}
+.title:hover{
+    color:#B33030;
+}
+
+.barra {
+    font-family: 'syne';
+    font-weight: bold;
+    color: #161616;
+}
+
+#map {
+    height: 500px;
+}
+#map2 {
+    height: 300px;
+}
+.searchList {
+    position:fixed;
+    z-index: 9999999;
+    padding-left: 0;
+}
+.searchCard {
+    text-decoration: none;
+}
+
+
+
+
+
+
+@media screen and (max-width: 425px) {
+    .features {
+        flex-direction: column;
+    }
+}

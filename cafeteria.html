@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <title>Cafetería</title>
+</head>
+<body>
+    <header>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container barra">
+          <a class="navbar-brand me-5 title" href="./index.html">Encontrá tu café</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <a class="link" href="./listado.html">Listado de cafeterías</a>
+            </ul>
+            <label>Buscar: </label>
+            <div class="d-flex flex-column ms-2">
+              <div>
+
+                <input type="text" id="search" onkeypress="return (event.charCode > 64 && 
+                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)" />
+                <ul class="searchList" id="results"></ul>
+              </div>
+           
+            </div>
+
+
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div id="banner">
+    </div>
+
+    <div class="container d-flex flex-wrap p-3">
+
+        <div class="col-lg-7 col-md-6 p-3">
+            <div id="carouselExample" class="carousel slide">
+                <div id="carrusel" class="carousel-inner">
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <div class="container col-lg-5 col-md-6 p-3">
+            <div id="map2" class="card"></div>
+        </div>
+
+    </div>
+
+    <div class="container d-flex flex-wrap gap-3 justify-content-center mb-5">
+
+      <div class="dropup">
+        <button class="btn dropdown-toggle boton" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Características del menú
+        </button>
+        <ul class="dropdown-menu">
+          <div class="dropdown-item">
+            <p><strong>Café de especialidad: </strong><span id="especialidad"></span></p>
+          </div>
+          <div class="dropdown-item">
+            <p><strong>Opciones vegetarianas: </strong><span id="veggie"></span></p>            
+          </div>
+          <div class="dropdown-item">
+            <p><strong>Opciones veganas: </strong><span id="vegan"></span></p>
+          </div>
+          <div class="dropdown-item">
+            <p><strong>Opciones sin gluten: </strong><span id="gluten"></span></p>
+          </div>
+          <div class="dropdown-item">
+            <p><strong>Opciones sin lactosa: </strong><span id="lactosa"></span></p>
+          </div>
+          <div class="dropdown-item">
+            <p><strong>Opciones sin azúcar: </strong><span id="diabetico"></span></p>
+          </div>
+          <div class="dropdown-item">
+            <p><strong>Tragos y bebidas alcohólicas: </strong><span id="alcohol"></span></p>
+          </div>
+          <div class="dropdown-item">
+            <p><strong>Almuerzo/cena: </strong><span id="almuerzo"></span></p>
+          </div>
+          <div class="dropdown-item">
+            <p><strong>Para llevar: </strong><span id="takeaway"></span></p>
+          </div>
+          <div class="dropdown-item">
+            <p><strong>Delivery: </strong><span id="delivery"></span></p>
+          </div>
+        </ul>
+      </div>
+
+      <div class="dropup">
+        <button class="btn dropdown-toggle boton" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Características del lugar
+        </button>
+        <ul class="dropdown-menu">
+          <div class="dropdown-item">
+            <p><strong>Reservas: </strong><span id="reserva"></span></p>
+          </div>
+          <div class="dropdown-item">
+            <p><strong>WiFi: </strong><span id="wifi"></span></p>
+          </div>
+          <div class="dropdown-item">
+            <p><strong>Espacio exterior: </strong><span id="outdoor"></span></p>
+          </div>
+          <div class="dropdown-item">
+            <p><strong>Accesibilidad para silla de ruedas: </strong><span id="accesible"></span></p>
+          </div>
+          <div class="dropdown-item">
+            <p><strong>Pet friendly: </strong><span id="mascotas"></span></p>
+          </div>
+          <div class="dropdown-item">
+            <p><strong>Bicicleteros: </strong><span id="bicicleta"></span></p>
+          </div>
+          <div class="dropdown-item">
+            <p><strong>Extras: </strong><span id="extra"></span></p>
+          </div>
+        </ul>
+      </div>
+      <div class="dropup">
+        <button class="btn dropdown-toggle boton" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Horarios
+        </button>
+        <ul class="dropdown-menu" id="horarios">
+        </ul>
+      </div>
+      <div class="dropup">
+        <button class="btn dropdown-toggle boton" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Medios de pago
+        </button>
+        <ul class="dropdown-menu">
+          <div class="dropdown-item">
+            <span id="pagos"></span>
+          </div>
+        </ul>
+      </div>
+
+
+
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="./js/cafeteria.js"></script>
+</body>
+</html>
