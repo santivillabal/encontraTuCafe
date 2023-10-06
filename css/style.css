@@ -7,33 +7,50 @@ span{
     color:#B33030;
 }
 
-.boton{
-    background-color: #B33030;
-    color: white;
-}
-
-.link {
+.barra {
+    font-family: 'syne';
+    font-weight: bold;
     color: #161616;
-    text-decoration: none;
 }
-.link:hover{
-    color: #B33030;
-}
-
 
 .title{
-    font-size: 2rem;
+    font-size: 3rem;
     color: #161616;
 }
 .title:hover{
     color:#B33030;
 }
 
-.barra {
-    font-family: 'syne';
+.boton{
+    background-color: #B33030;
+    color: white;
+}
+
+.link{
+    color: #161616;
+    text-decoration: none;
+}
+.link:hover{
+    color: #B33030;
+    cursor: pointer;
+}
+.page-link{
+    color: #161616;
     font-weight: bold;
+    text-decoration: none;
+}
+.page-link:visited{
     color: #161616;
 }
+.page-link:hover{
+    color: #B33030;
+}
+
+
+
+
+
+
 
 #map {
     height: 500px;
@@ -42,7 +59,7 @@ span{
     height: 300px;
 }
 .searchList {
-    position:fixed;
+    position:absolute;
     z-index: 9999999;
     padding-left: 0;
 }

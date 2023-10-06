@@ -4,6 +4,7 @@ const listSection = document.getElementById("listSection");
 
 
 
+
 function showList(cafeteria, id) {
     listSection.innerHTML += `
     <div class="col-lg-4 col-md-6 p-3 listItem" id="${id}">
@@ -21,14 +22,52 @@ function showList(cafeteria, id) {
 
 // MUESTRA EL LISTADO COMPLETO
 
+
+
 window.addEventListener("DOMContentLoaded", async() => {
     const querySnapshot = await getCafeterias();
     querySnapshot.forEach(doc => {
         cafeterias.push((doc.data()));
     });
-    cafeterias.forEach(cafeteria => {
-        showList(cafeteria, cafeteria.id);
-    });
+
+    let check = document.querySelectorAll('input[type="checkbox"]');
+    for (let i=0; i<check.length; i++){
+        check[i].checked = false
+    }
+    const paginationList = document.getElementById("paginationList");
+    let totalPages = Math.ceil(cafeterias.length / 12);
+
+    for (let i=0; i < 12; i++){
+        showList(cafeterias[i], cafeterias[i].id);
+    }
+
+    for (let i=1; i < totalPages + 1; i++){
+        paginationList.innerHTML += `
+        <li class="page-item"><a class="page-link" href="#">${i}</a></li>
+        `
+    }
+
+    const page = e => {
+        if(e.target.classList.contains("page-link")){
+            e.preventDefault()
+            let currentPage = parseInt(e.target.innerHTML);
+            let start = (currentPage - 1) * 12;
+            let end = currentPage * 12 - 1;
+            listSection.innerHTML="";
+            for (let i=start; i < end+1; i++){
+                if(!cafeterias[i]){break}
+                showList(cafeterias[i], cafeterias[i].id);
+            }
+        }
+        const listItems = document.querySelectorAll('div.listItem');
+        for (let i=0; i<listItems.length; ++i) {
+          listItems[i].addEventListener('click', redirect);
+        }
+    }
+
+    paginationList.addEventListener('click', page)
+
+
     const listItems = document.querySelectorAll('div.listItem');
     for (let i=0; i<listItems.length; ++i) {
       listItems[i].addEventListener('click', redirect);
@@ -50,12 +89,43 @@ window.addEventListener("DOMContentLoaded", async() => {
 
     function clear(){
         listSection.innerHTML = "";
-        cafeterias.forEach(cafeteria => {
-            showList(cafeteria, cafeteria.id);
-        });
+        for (let i=0; i < 12; i++){
+            showList(cafeterias[i], cafeterias[i].id);
+        }
         let check = document.querySelectorAll('input[type="checkbox"]');
         for (let i=0; i<check.length; i++){
             check[i].checked = false
+        }
+
+        const paginationList = document.getElementById("paginationList");
+        let totalPages = Math.ceil(cafeterias.length / 12);
+        paginationList.innerHTML="";
+        for (let i=1; i < totalPages + 1; i++){
+            paginationList.innerHTML += `
+            <li class="page-item"><a class="page-link" href="#">${i}</a></li>
+            `
+        }
+        const page = e => {
+            if(e.target.classList.contains("page-link")){
+                e.preventDefault()
+                let currentPage = parseInt(e.target.innerHTML);
+                let start = (currentPage - 1) * 12;
+                let end = currentPage * 12 - 1;
+                listSection.innerHTML="";
+                for (let i=start; i < end+1; i++){
+                    if(!cafeterias[i]){break}
+                    showList(cafeterias[i], cafeterias[i].id);
+                }
+            }
+            const listItems = document.querySelectorAll('div.listItem');
+            for (let i=0; i<listItems.length; ++i) {
+              listItems[i].addEventListener('click', redirect);
+            }
+        }
+        paginationList.addEventListener('click', page)
+        const listItems = document.querySelectorAll('div.listItem');
+        for (let i=0; i<listItems.length; ++i) {
+          listItems[i].addEventListener('click', redirect);
         }
     }
 
@@ -65,6 +135,9 @@ window.addEventListener("DOMContentLoaded", async() => {
         e.preventDefault()
         submit()
     });
+
+
+
 
             // CREA ARRAY DE CARACTERÍSTICAS SELECCIONADAS
 
@@ -106,9 +179,45 @@ window.addEventListener("DOMContentLoaded", async() => {
         
             // IMPRIME CAFETERÍAS FILTRADAS
 
-        filtered.forEach(element => {
-            showList(element, element.id); 
-        });
+        const paginationList = document.getElementById("paginationList");
+        let totalPages = Math.ceil(filtered.length / 12);
+        paginationList.innerHTML="";
+
+        for (let i=0; i < 12; i++){
+            if(!filtered[i]){break}
+            showList(filtered[i], filtered[i].id);
+        }
+    
+        for (let i=1; i < totalPages + 1; i++){
+            if(totalPages === 1){
+                paginationList.innerHTML="";
+            }else{
+            paginationList.innerHTML += `
+            <li class="page-item"><a class="page-link" href="#">${i}</a></li>
+            `
+            }
+        }
+    
+        const page = e => {
+            if(e.target.classList.contains("page-link")){
+                e.preventDefault()
+                let currentPage = parseInt(e.target.innerHTML);
+                let start = (currentPage - 1) * 12;
+                let end = currentPage * 12 - 1;
+                listSection.innerHTML="";
+                for (let i=start; i < end+1; i++){
+                    if(!filtered[i]){break}
+                    showList(filtered[i], filtered[i].id);
+                }
+            }
+            const listItems = document.querySelectorAll('div.listItem');
+            for (let i=0; i<listItems.length; ++i) {
+              listItems[i].addEventListener('click', redirect);
+            }
+        }
+    
+        paginationList.addEventListener('click', page)
+
         const listItems = document.querySelectorAll('div.listItem');
         for (let i=0; i<listItems.length; ++i) {
           listItems[i].addEventListener('click', redirect);
@@ -135,7 +244,7 @@ window.addEventListener("DOMContentLoaded", async() => {
             console.log(filtered);
             for (let i=0; i< filtered.length; i++){
                 results.innerHTML += `
-                <li class="card p-2 item" id="${filtered[i].id}">${filtered[i].nombre}</li>
+                <li class="card p-2 link" id="${filtered[i].id}">${filtered[i].nombre}</li>
                 `
             }
         } 
@@ -149,6 +258,8 @@ const clicked = e => {
         localStorage.setItem("cafeteria", JSON.stringify(cafe[0]));
         console.log(cafe)
         window.location = "./cafeteria.html";
+    }else{
+        results.innerHTML = "";
     }
 }
 

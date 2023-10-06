@@ -48,7 +48,7 @@ window.addEventListener("DOMContentLoaded", async() => {
             console.log(filtered);
             for (let i=0; i< filtered.length; i++){
                 results.innerHTML += `
-                <li class="card p-2 item" id="${filtered[i].id}">${filtered[i].nombre}</li>
+                <li class="card p-2 link" id="${filtered[i].id}">${filtered[i].nombre}</li>
                 `
             }
         } 
@@ -62,6 +62,8 @@ const clicked = e => {
         localStorage.setItem("cafeteria", JSON.stringify(cafe[0]));
         console.log(cafe)
         window.location = "./cafeteria.html";
+    }else{
+        results.innerHTML = "";
     }
 }
 

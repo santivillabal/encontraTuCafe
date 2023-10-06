@@ -129,3 +129,4 @@ let extra = document.getElementById('extra');
         <li class="dropdown-item"><strong>Domingo: </strong><span>${cafeteria.domingo}</span</li>
     </div>
  `
+ 
