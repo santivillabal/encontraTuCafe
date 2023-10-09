@@ -37,7 +37,6 @@ window.addEventListener("DOMContentLoaded", async() => {
         results.innerHTML = ``;
         if (element.keyCode >= 65 && element.keyCode <= 90) elementValue += element.key.toString();
         if (element.key == "Backspace") elementValue = elementValue.slice(0, -1);
-        console.log(elementValue)
         const filtered = cafeterias.filter((cafeteria) => cafeteria.nombre.toUpperCase().includes(elementValue.toUpperCase().trim()));
 
         if (!filtered.length){
@@ -45,7 +44,6 @@ window.addEventListener("DOMContentLoaded", async() => {
         } else if (!elementValue) results.textContent = '';
         else{
             filtered.map((cafeteria) => cafeteria.nombre);
-            console.log(filtered);
             for (let i=0; i< filtered.length; i++){
                 results.innerHTML += `
                 <li class="card p-2 link" id="${filtered[i].id}">${filtered[i].nombre}</li>
@@ -57,10 +55,9 @@ window.addEventListener("DOMContentLoaded", async() => {
     });
 
 const clicked = e => {
-    if(e.target.classList.contains("item")){
+    if(e.target.classList.contains("link")){
         let cafe = cafeterias.filter((cafeteria) => cafeteria.id == e.target.id)
         localStorage.setItem("cafeteria", JSON.stringify(cafe[0]));
-        console.log(cafe)
         window.location = "./cafeteria.html";
     }else{
         results.innerHTML = "";

@@ -1,5 +1,5 @@
 const cafeteria = JSON.parse(localStorage.getItem("cafeteria"));
-console.log(cafeteria)
+
 
 
 // BANNER
@@ -114,7 +114,14 @@ if(!cafeteria.bicicleta){bicicleta.innerText = "No hay datos"};
 let extra = document.getElementById('extra');
 !cafeteria.extra ? extra.parentElement.parentElement.style.display = 'none' : extra.innerText = cafeteria.extra
 
+let contacto = document.getElementById('telefono');
+!cafeteria.telefono ? telefono.parentElement.parentElement.style.display = 'none' : telefono.innerText += cafeteria.telefono;
 
+let web = document.getElementById('web');
+!cafeteria.web ? web.parentElement.parentElement.style.display = 'none' : web.href = cafeteria.web;
+
+let instagram = document.getElementById('instagram');
+!cafeteria.instagram ? instagram.parentElement.parentElement.style.display = 'none' : instagram.href = cafeteria.instagram;
 
 // HORARIOS
  const horarios = document.getElementById("horarios")

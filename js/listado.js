@@ -2,6 +2,9 @@ import { getCafeterias } from './firebase.js';
 const cafeterias = []
 const listSection = document.getElementById("listSection");
 
+function hideLoader(){
+    document.getElementById("loader").style.display = "none";
+  }
 
 
 
@@ -36,7 +39,7 @@ window.addEventListener("DOMContentLoaded", async() => {
     }
     const paginationList = document.getElementById("paginationList");
     let totalPages = Math.ceil(cafeterias.length / 12);
-
+    hideLoader();
     for (let i=0; i < 12; i++){
         showList(cafeterias[i], cafeterias[i].id);
     }
@@ -54,6 +57,7 @@ window.addEventListener("DOMContentLoaded", async() => {
             let start = (currentPage - 1) * 12;
             let end = currentPage * 12 - 1;
             listSection.innerHTML="";
+            hideLoader();
             for (let i=start; i < end+1; i++){
                 if(!cafeterias[i]){break}
                 showList(cafeterias[i], cafeterias[i].id);
@@ -148,7 +152,7 @@ window.addEventListener("DOMContentLoaded", async() => {
             for (let i = 0; i < check.length; i++) {
                 selected.push(check[i].getAttribute("rel"));
             }
-        }
+        }else{return}
 
             // CREA UN ARRAY DE TODAS LAS CAFETERÍAS QUE CUMPLEN LAS CONDICIONES
 
