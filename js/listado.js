@@ -57,7 +57,7 @@ window.addEventListener("DOMContentLoaded", async() => {
             let start = (currentPage - 1) * 12;
             let end = currentPage * 12 - 1;
             listSection.innerHTML="";
-            hideLoader();
+            window.scrollTo({ top: 0, behavior: 'smooth' })
             for (let i=start; i < end+1; i++){
                 if(!cafeterias[i]){break}
                 showList(cafeterias[i], cafeterias[i].id);
