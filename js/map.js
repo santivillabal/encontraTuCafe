@@ -68,15 +68,12 @@ window.addEventListener("DOMContentLoaded", async() => {
             results.textContent = 'No hay resultados';
         } else if (!elementValue) results.textContent = '';
         else{
-            setTimeout(function(){
-                filtered.map((cafeteria) => cafeteria.nombre);
-                for (let i=0; i< filtered.length; i++){
-                    results.innerHTML += `
-                    <li class="card p-2 link" id="${filtered[i].id}">${filtered[i].nombre}</li>
-                    `
-                }
-            }, 1)
-
+            filtered.map((cafeteria) => cafeteria.nombre);
+            for (let i=0; i< filtered.length; i++){
+                results.innerHTML += `
+                <li class="card p-2 link" id="${filtered[i].id}">${filtered[i].nombre}</li>
+                `
+            }
         } 
 
 

@@ -23,7 +23,7 @@ span{
 }
 
 .title{
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: #161616;
 }
 .title:hover{
@@ -134,4 +134,19 @@ span{
     .features {
         flex-direction: column;
     }
+    .title{
+        font-size: 2rem;
+    }
+    .navbar-toggler{
+        margin-bottom: 0.5rem;
+    }
+
+}
+
+@media screen and (max-width: 425px) {
+
+    .navbar-toggler{
+        margin-bottom: 1rem;
+    }
+
 }
