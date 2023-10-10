@@ -46,7 +46,9 @@ span{
     color: #B33030;
     cursor: pointer;
 }
-
+.item:hover{
+    color: white;
+}
 .page-link, #web, #instagram{
     color: #161616;
     font-weight: bold;

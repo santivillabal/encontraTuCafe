@@ -11,13 +11,35 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 const cafeterias = [];
 
 
-function mapCafeterias(cafeteria, id){
+function mapCafeterias(cafeteria){
     let cafe = L.marker([cafeteria.coordenada1, cafeteria.coordenada2],{title: cafeteria.nombre}).addTo(map);
     cafe.bindPopup(`
         <h4>${cafeteria.nombre}</h4>
-        <button class="item btn btn-sm boton" id="${id}">Ver más</button>
+        <button class="item btn btn-sm boton" id="${cafeteria.id}">Ver más</button>
     `);
 }
+
+
+const listClicked = e => {
+    if(e.target.classList.contains("link")){
+        let cafe = cafeterias.filter((cafeteria) => cafeteria.id == e.target.id)
+        localStorage.setItem("cafeteria", JSON.stringify(cafe[0]));
+        window.location = "./cafeteria.html";
+    }else{
+        results.innerHTML = "";
+    }
+}
+
+const markerClicked = e => {
+    if(e.target.classList.contains("item")){
+        let cafe = cafeterias.filter((cafeteria) => cafeteria.id == e.target.id)
+        localStorage.setItem("cafeteria", JSON.stringify(cafe[0]));
+        window.location = "./cafeteria.html";
+    }
+}
+
+
+
 
 
 window.addEventListener("DOMContentLoaded", async() => {
@@ -26,7 +48,7 @@ window.addEventListener("DOMContentLoaded", async() => {
         cafeterias.push((doc.data()));
     });
     cafeterias.forEach(cafeteria => {
-        mapCafeterias(cafeteria, cafeteria.id);
+        mapCafeterias(cafeteria);
     });
 
     const search = document.getElementById('search');
@@ -57,17 +79,8 @@ window.addEventListener("DOMContentLoaded", async() => {
 
     });
 
-const clicked = e => {
-    if(e.target.classList.contains("link")){
-        let cafe = cafeterias.filter((cafeteria) => cafeteria.id == e.target.id)
-        localStorage.setItem("cafeteria", JSON.stringify(cafe[0]));
-        window.location = "./cafeteria.html";
-    }else{
-        results.innerHTML = "";
-    }
-}
-
-document.addEventListener('click', clicked);
+document.addEventListener('click', listClicked);
+document.addEventListener('click', markerClicked);
 
 
 })

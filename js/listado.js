@@ -257,7 +257,7 @@ window.addEventListener("DOMContentLoaded", async() => {
 
     });
 
-const clicked = e => {
+const listClicked = e => {
     if(e.target.classList.contains("item")){
         let cafe = cafeterias.filter((cafeteria) => cafeteria.id == e.target.id)
         localStorage.setItem("cafeteria", JSON.stringify(cafe[0]));
@@ -268,7 +268,7 @@ const clicked = e => {
     }
 }
 
-document.addEventListener('click', clicked);
+document.addEventListener('click', listClicked);
 
 
 
