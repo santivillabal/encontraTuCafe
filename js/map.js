@@ -33,10 +33,13 @@ window.addEventListener("DOMContentLoaded", async() => {
     const results = document.getElementById('results');
     let elementValue = "";
 
-    search.addEventListener('keyup input', (element) => {
+    search.addEventListener('input', (element) => {
         results.innerHTML = ``;
-        if (element.keyCode >= 65 && element.keyCode <= 90) elementValue += element.key.toString();
-        if (element.key == "Backspace") elementValue = elementValue.slice(0, -1);
+        if (element.inputType == "deleteContentBackward"){
+            elementValue = elementValue.slice(0, -1);
+        }else{
+            elementValue += element.data;
+        }
         const filtered = cafeterias.filter((cafeteria) => cafeteria.nombre.toUpperCase().includes(elementValue.toUpperCase().trim()));
 
         if (!filtered.length){
