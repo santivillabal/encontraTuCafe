@@ -67,6 +67,18 @@ span{
     color: #B33030;
 }
 
+.card-img{
+    height: 10rem;
+}
+
+
+#banner{
+    background-size: cover;
+}
+footer{
+    background-color: #161616;
+}
+
 
 
 
@@ -100,7 +112,7 @@ span{
     border: 4px solid #161616;
     box-sizing: border-box;
     animation: fill 2s linear infinite alternate;
-    color: #B33030;
+    color: #161616;
     border-radius: 0 0 4px 4px;
   }
   .loader::after {
@@ -140,11 +152,17 @@ span{
     .navbar-toggler{
         margin-bottom: 0.5rem;
     }
+    footer{
+        font-size: small;
+    }
 
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 350px) {
 
+    .title{
+        font-size: 1.5rem;
+    }
     .navbar-toggler{
         margin-bottom: 1rem;
     }

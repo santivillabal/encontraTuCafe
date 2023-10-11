@@ -13,7 +13,7 @@ function showList(cafeteria, id) {
     <div class="col-lg-4 col-md-6 p-3 listItem" id="${id}">
     <div class="my-3">
         <div class="card text-white listCard">
-          <img src="${cafeteria.foto1}" class="card-img listImg" alt="...">
+          <img src="${cafeteria.foto1}" class="card-img listImg object-fit-cover" alt="...">
           <div class="card-img-overlay d-flex align-items-end itemCard">
             <h5 class="card-title">${cafeteria.nombre}</h5>
           </div>

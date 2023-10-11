@@ -6,11 +6,9 @@ const cafeteria = JSON.parse(localStorage.getItem("cafeteria"));
 
 const banner = document.getElementById("banner");
 banner.innerHTML = `
-    <div class="py-5 bg-image-full" style="background-image: url('${cafeteria.foto1}')">
-    <div class="text-center my-5">
-        <h2 class="text-white title">${cafeteria.nombre}</h2>
-        <p class="text-white-50 mb-0">${cafeteria.direccion}</p>
-    </div>
+    <div class="text-center my-4">
+        <h2 class="text-white title shadow-lg">${cafeteria.nombre}</h2>
+        <p class="text-white mb-0">${cafeteria.direccion}</p>
     </div>
 `
 
@@ -19,16 +17,16 @@ banner.innerHTML = `
 const carrusel = document.getElementById("carrusel")
 carrusel.innerHTML = `
     <div class="carousel-item active card">
-    <img src="${cafeteria.foto1}" class="d-block w-100" style="height: 300px;" alt="...">
+    <img src="${cafeteria.foto1}" class="d-block w-100 object-fit-cover" style="height: 300px;" alt="...">
     </div>
     <div class="carousel-item card">
-    <img src="${cafeteria.foto2}" class="d-block w-100" style="height: 300px;" alt="...">
+    <img src="${cafeteria.foto2}" class="d-block w-100 object-fit-cover" style="height: 300px;" alt="...">
     </div>
     <div class="carousel-item card">
-    <img src="${cafeteria.foto3}" class="d-block w-100" style="height: 300px;" alt="...">
+    <img src="${cafeteria.foto3}" class="d-block w-100 object-fit-cover" style="height: 300px;" alt="...">
     </div>
     <div class="carousel-item card">
-    <img src="${cafeteria.foto4}" class="d-block w-100" style="height: 300px;" alt="...">
+    <img src="${cafeteria.foto4}" class="d-block w-100 object-fit-cover" style="height: 300px;" alt="...">
     </div>
 `
 
