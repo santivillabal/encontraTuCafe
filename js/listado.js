@@ -6,22 +6,21 @@ function hideLoader(){
     document.getElementById("loader").style.display = "none";
   }
 
-
-
-function showList(cafeteria, id) {
+  function showList(cafeteria, id) {
     listSection.innerHTML += `
-    <div class="col-lg-4 col-md-6 p-3 listItem" id="${id}">
-    <div class="my-3">
+    <div class="col-lg-4 col-md-6 my-3 p-3 listItem" id="${id}">
         <div class="card text-white listCard">
           <img src="${cafeteria.foto1}" class="card-img listImg object-fit-cover" alt="...">
-          <div class="card-img-overlay d-flex align-items-end itemCard">
+          <div class="card-img-overlay d-flex flex-column justify-content-end itemCard">
             <h5 class="card-title">${cafeteria.nombre}</h5>
+            <p>${cafeteria.direccion}</p>
           </div>
         </div>                  
-    </div>
   </div>
   `
 }
+
+
 
 // MUESTRA EL LISTADO COMPLETO
 

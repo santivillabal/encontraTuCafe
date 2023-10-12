@@ -5,6 +5,7 @@
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    transition: all 0.3s ease-out;
 }
 
 
@@ -66,6 +67,24 @@ span{
 #instagram:hover{
     color: #B33030;
 }
+
+.listCard{
+    width: auto;
+    text-shadow: 2px 2px 4px #000000;
+    overflow: hidden;
+
+}
+.listCard:hover{
+    box-shadow:  4px 4px 8px #161616;
+    transform: scale(1.05);
+    border: none;
+}
+
+.itemCard:hover{
+    background-color: rgba(22, 22, 22, 0.6);
+    backdrop-filter: blur(1px);
+}
+
 
 .card-img{
     height: 10rem;
